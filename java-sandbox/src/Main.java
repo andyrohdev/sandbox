@@ -1,4 +1,4 @@
-import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class Main {
 
@@ -9,13 +9,10 @@ public class Main {
         Main main = new Main();
 
         System.out.println("Hello world!");
-
-        System.out.println(main.makeLast([]);
+        System.out.println(Arrays.toString(main.fizzArray(1)));
 
 
     }
-
-    public 
 
     public int[] makeLast(int[] nums) {
 
@@ -55,6 +52,59 @@ public class Main {
     public String extraEnd(String str) {
         String repeatedString = str.substring(str.length() - 2);
         return repeatedString + repeatedString + repeatedString;
+    }
+
+    public boolean double23(int[] nums) {
+        if (nums.length != 2) {
+            return false;
+        }
+
+        return (nums[0] == 2 && nums[1] == 2 || nums[0] == 3 && nums[1] == 3);
+
+    }
+
+    public int[] fix23(int[] nums) {
+//        int[] newArray = new int[3];
+//        boolean nextNum0 = false;
+//        for (int i = 0; i < nums.length; i++) {
+//            if (i < nums.length - 1) {
+//                if(!nextNum0) {
+//                    if (nums[i] == 2 && nums[i + 1] == 3) {
+//                        newArray[i] = 2;
+//                        newArray[i + 1] = 0;
+//                        nextNum0 = true;
+//                    } else {
+//                        newArray[i] = nums[i];
+//                    }
+//                } else {
+//                    nextNum0 = false;
+//                }
+//            } else if (nextNum0) {
+//                break;
+//            } else {
+//                newArray[i] = nums[i];
+//            }
+//        }
+//
+//        return newArray;
+
+        int[] newArray = nums.clone();
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 2 && nums[i + 1] == 3) {
+                newArray[i + 1] = 0;
+            }
+        }
+        return newArray;
+    }
+
+    public int[] fizzArray(int n) {
+        int[] newArray = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            newArray[i] = i;
+        }
+
+        return newArray;
     }
 
 }
