@@ -10,7 +10,7 @@ public class Main {
         List<String> strings = new ArrayList<>(List.of("red", "yellow", "blue", "yellow", "blue", "red"));
         int[] nums = new int[]{5, 8, 11, 39, 200, 97};
         System.out.println("Hello world!");
-        System.out.println(Arrays.toString(main.makeMiddle(nums)));
+        System.out.println(Arrays.toString(main.primeFactors(8)));
 
 
 
@@ -320,6 +320,143 @@ public class Main {
 
         returnArray[0] = nums[startingPointIndex];
         returnArray[1] = nums[startingPointIndex + 1];
+
+        return returnArray;
+
+    }
+
+    // Create a method called blackjack that takes in two integers, a and b.
+    // Return whichever value is nearest to 21 without going over.
+    // Return 0 if they both go over.
+
+    public int blackjack(int a, int b) {
+
+        // Find the difference between a and 21, etc.
+        // Lowest difference number is the one that is closer to 21.
+        // Since it can't go over, the answer should not be negative.
+
+        int differenceA = 21 - a;
+        int differenceB = 21 - b;
+
+        // What if it was 19, 22. 22 is higher than 21. So we need to return the other number.
+
+        if (differenceA < differenceB || b > 21) {
+            return a;
+        } else if (differenceB < differenceA || a > 21) {
+            return b;
+        } else {
+            return b;
+        }
+
+    }
+
+    // Create a method called fizzBuzz with no parameters.
+    // Return an array of 100 strings representing the values 1-100.
+    // If the value is a multiple of both 3 and 5, put “FizzBuzz” in the array.
+    // If the value is a multiple of 3 (but not 5), put “Fizz” in the array.
+    // If the value is a multiple of 5 (but not 3), put “Buzz” in the array.
+    // For all other values, put a string containing the value in the array.
+
+    public String[] fizzBuzz() {
+
+        String[] returnArray = new String[100];
+
+        for(int i = 1; i <= 100; i++) {
+
+            if (i % 3 == 0 && i % 5 == 0) {
+                returnArray[i - 1] = "FizzBuzz";
+            } else if (i % 3 == 0) {
+                returnArray[i - 1] = "Fizz";
+            } else if (i % 5 == 0) {
+                returnArray[i - 1] = "Buzz";
+            } else {
+                returnArray[i - 1] = Integer.toString(i);
+            }
+        }
+
+        return returnArray;
+
+    }
+
+    // Create a method called fibonacci with no parameters.
+    // In a Fibonacci sequence, every number after the first two is the sum of the two preceding ones.
+    // Return an array of integers containing the Fibonacci sequence of 0, 1, 1, 2, 3, and so on for the values less than 2000.
+
+    public int[] fibonacci() {
+
+        // Made the list here because we cant make a array with unknown size.
+        List<Integer> tempList = new ArrayList<>();
+
+        // Tracker to track currentNum.
+        int currentNum = 0;
+
+        // First two values are always 0, 1.
+        tempList.add(0);
+        tempList.add(1);
+
+        // For loop to go through and do math.
+        for (int i = 2; currentNum < 2000 ; i++) {
+
+            //Previous numbers
+            int first = tempList.get(i - 1);
+            int second = tempList.get(i - 2);
+
+            // Math
+            int sum = first + second;
+
+            // Check to proceed; Else break.
+            if (sum >= 2000) {
+                break;
+            }
+
+            // Passed check; Finish the step.
+            tempList.add(sum);
+            currentNum = sum;
+
+        }
+
+        // Now we know the size; We can make return data type.
+        int[] returnArray = new int[tempList.size()];
+
+        // Loop through List to Array
+        for (int i = 0; i < tempList.size(); i++) {
+            returnArray[i] = tempList.get(i);
+        }
+
+        return returnArray;
+
+    }
+
+    // Create a method called primeFactors that takes in an integer n.
+    // Return an integer array of the prime factors of n.
+    // Prime factors are the numbers you can multiply to get n that you can't break down into any smaller factors.
+    // You can assume the input is greater than 1.
+
+    public int[] primeFactors(int n) {
+
+        List<Integer> factors = new ArrayList<>();
+
+        while (n % 2 == 0) {
+            factors.add(2);
+            n = n / 2;
+        }
+
+        for (int i = 3; i <= Math.sqrt(n) ; i += 2) {
+            while (n % i == 0) {
+                factors.add(i);
+                n = n / i;
+            }
+        }
+
+        if (n > 1) {
+            factors.add(n);
+        }
+
+        int[] returnArray = new int[factors.size()];
+
+        for (int i = 0; i < factors.size(); i++) {
+            returnArray[i] = factors.get(i);
+        }
 
         return returnArray;
 
