@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -9,9 +7,10 @@ public class Main {
     public static void main(String[] args) {
 
         Main main = new Main();
-
+        List<String> strings = new ArrayList<>(List.of("red", "yellow", "blue", "yellow", "blue", "red"));
+        int[] nums = new int[]{5, 8, 11, 39, 200, 97};
         System.out.println("Hello world!");
-        System.out.println(main.sumOddsBetweenValues(0, 5));
+        System.out.println(Arrays.toString(main.makeMiddle(nums)));
 
 
 
@@ -238,6 +237,92 @@ public class Main {
 
     }
 
+    public List<String> distinctValues(List<String> strings) {
 
+        List<String> returnList = new ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+
+        for(String word : strings) {
+            map.putIfAbsent(word, 1);
+        }
+
+        for(String word : map.keySet()) {
+            returnList.add(word);
+        }
+
+        return returnList;
+
+    }
+
+    // Create a method called array2List that takes in a string array called strings.
+    // Return a List containing the elements of strings in the same order.
+    // Avoid using a standard library method that does the conversion for you.
+
+    public List<String> array2List(String[] strings) {
+
+        List<String> returnList = new ArrayList<>();
+
+        for(String word : strings) {
+            returnList.add(word);
+        }
+
+        return returnList;
+
+    }
+
+    // Create a method called arrayInt2ListDouble that takes in an integer array called ints.
+    // Divide each value in ints by 2, and return them in a List of Doubles.
+
+    public List<Double> arrayInt2ListDouble(int[] ints) {
+
+        List<Double> returnList = new ArrayList<>();
+
+        for(int num : ints) {
+            double quotient = (double) num / 2;
+            returnList.add(quotient);
+        }
+
+        return returnList;
+
+    }
+
+    //Create a method called makeOutWord that takes in two strings, outword and word.
+    // Return a new string where the word is in the middle of the outword string.
+    // You can assume the length of outword is even.
+
+    public String makeOutWord(String outward, String word) {
+
+        String returnString = "";
+        String upperhalf = outward.substring(0, (outward.length() / 2));
+        // <<>> : Start at 0 index, length is 4 / 2 = 2, Index position 2. We need to offset by one.
+        // After testing, I change my mind. No offset needed.
+        String bottomhalf = outward.substring(outward.length() / 2);
+
+        returnString += upperhalf;
+        returnString += word;
+        returnString += bottomhalf;
+
+        return returnString;
+
+    }
+
+    // Create a method called makeMiddle that takes in an integer array nums.
+    // Return a new array length 2 containing the middle two elements from nums.
+    // You can assume the length of nums is even and 2 or more.
+
+    public int[] makeMiddle(int[] nums) {
+
+        int[] returnArray = new int[2];
+
+        // 1 2 3 4 : First want to find the mid point. Size / 2 is 2. So the index position is 2 - 1 starting.
+
+        int startingPointIndex = (nums.length / 2) - 1; // Should be 1.
+
+        returnArray[0] = nums[startingPointIndex];
+        returnArray[1] = nums[startingPointIndex + 1];
+
+        return returnArray;
+
+    }
 
 }
