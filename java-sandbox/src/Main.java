@@ -10,7 +10,7 @@ public class Main {
         List<String> strings = new ArrayList<>(List.of("red", "yellow", "blue", "yellow", "blue", "red"));
         int[] nums = new int[]{5, 8, 11, 39, 200, 97};
         System.out.println("Hello world!");
-        System.out.println(Arrays.toString(main.primeFactors(8)));
+
 
 
 
@@ -461,5 +461,7 @@ public class Main {
         return returnArray;
 
     }
+
+
 
 }
